@@ -1,0 +1,9 @@
+Package: space.havrysh.expectfix
+Name: Kindle Whispersync Fix
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: Strips the empty "Expect" HTTP header that old CFNetwork on iOS 6 attaches to Amazon Kindle app requests, which modern Amazon servers reject with 417 Expectation Failed. Fixes Whispersync (Sync to Furthest Page) on the Kindle app.
+Maintainer: Havrysh project
+Author: Havrysh project
+Section: Tweaks
+Depends: mobilesubstrate

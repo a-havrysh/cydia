@@ -1,0 +1,8 @@
+Origin: Havrysh
+Label: Kindle Whispersync Fix
+Suite: stable
+Version: 1.0
+Codename: ios6
+Architectures: iphoneos-arm
+Components: main
+Description: MobileSubstrate tweak fixing Amazon Kindle Whispersync (417 Expectation Failed) on old iOS
