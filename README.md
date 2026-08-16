@@ -1,7 +1,7 @@
 # Legacy iOS Tweaks — Cydia repo
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-![Platform](https://img.shields.io/badge/platform-iOS%206%2B-lightgrey)
+![Platform](https://img.shields.io/badge/platform-iOS%205.0%2B-lightgrey)
 
 A single Cydia source aggregating MobileSubstrate tweaks for jailbroken
 legacy iOS devices. Pure distribution point — no tweak source code lives
