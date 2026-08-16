@@ -1,4 +1,4 @@
-# Havrysh iOS Tweaks — Cydia repo
+# Legacy iOS Tweaks — Cydia repo
 
 A single Cydia source aggregating MobileSubstrate tweaks for jailbroken
 legacy iOS devices (iOS 6+). This repo is a pure distribution point — no

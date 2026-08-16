@@ -1,15 +1,15 @@
 Package: space.havrysh.expectfix
 Version: 1.0.0
 Architecture: iphoneos-arm
-Maintainer: Havrysh project
+Maintainer: a-havrysh
 Depends: mobilesubstrate
 Filename: debs/space.havrysh.expectfix_1.0.0_iphoneos-arm.deb
-Size: 3276
-MD5sum: e510989c1a6ff8785b4ee07432733b9d
-SHA1: 993d7295a0352fd328b5360c036bf001c25beadd
-SHA256: 559fc25e926821fb610cdadc60250d5a05c22ac5158b1033f1f7aeead8f26e32
+Size: 3268
+MD5sum: f4b1dc2c2b7cab7269d3d1c71615a8e9
+SHA1: 803a46ef202391a2dc42771e27c2f1cf5302d8be
+SHA256: 896b42204dc1fe046b93a448a45b12f9c55dc983a8750e76dc07650f3520a42a
 Section: Tweaks
 Description: Amazon's Whispersync backend (cde-ta-g7g.amazon.com) now rejects a malformed empty "Expect" HTTP header that old CFNetwork attaches to Kindle app sync requests on iOS 6, returning "417 Expectation Failed" and breaking "Sync to Furthest Page". This tweak hooks -[NSMutableURLRequest setValue:forHTTPHeaderField:] inside the Kindle app only, and drops the header when its value is empty, restoring sync.
-Author: Havrysh project
+Author: a-havrysh
 Name: Kindle Whispersync Fix
 
