@@ -1,4 +1,0 @@
-{ Filter = {
-    Bundles = ( "com.amazon.Lassen" );
-    Mode = "Any";
-}; }
