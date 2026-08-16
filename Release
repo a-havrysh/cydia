@@ -1,8 +1,8 @@
 Origin: Havrysh
-Label: Kindle Whispersync Fix
+Label: Havrysh iOS Tweaks
 Suite: stable
 Version: 1.0
-Codename: ios6
+Codename: legacy-ios
 Architectures: iphoneos-arm
 Components: main
-Description: MobileSubstrate tweak fixing Amazon Kindle Whispersync (417 Expectation Failed) on old iOS
+Description: MobileSubstrate tweaks for jailbroken legacy iOS devices (iOS 6+), fixing compatibility issues with modern backends.

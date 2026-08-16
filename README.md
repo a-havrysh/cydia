@@ -1,60 +1,64 @@
-# Kindle Whispersync Fix — Cydia repo
+# Havrysh iOS Tweaks — Cydia repo
 
-MobileSubstrate tweak for jailbroken iOS 6 (armv7). Fixes Amazon Kindle app
-sync ("Sync to Furthest Page") failing with a silent "Retrieval failed" error.
+A single Cydia source for MobileSubstrate tweaks that fix modern-backend
+compatibility issues on jailbroken legacy iOS devices (iOS 6+). Each tweak
+lives in its own folder under `src/`; all packages ship from this one repo.
 
-## Root cause
+## Add this source in Cydia
 
-CFNetwork on iOS 6 sends an outgoing HTTP POST for the Kindle app's
-`Content-Type: application/x-octet-stream` request that includes an empty
-`Expect:` header. Amazon's legacy `det-ta-g7g.amazon.com` logging endpoint
-tolerates it; the actual Whispersync endpoint
-(`cde-ta-g7g.amazon.com/FionaCDEServiceEngine/sidecar`) rejects it with
-`417 Expectation Failed` every time.
+Sources → Edit → Add → `https://a-havrysh.github.io/cydia/`
 
-The empty header turned out to be set by the Kindle app itself via the
-standard `-[NSMutableURLRequest setValue:forHTTPHeaderField:]` call — not by
-CFNetwork internals. `expectfix4.dylib` swizzles that method scoped to the
-Kindle app (`com.amazon.Lassen`) and drops the header when its value is
-empty.
+## Tweaks
 
-Source: `expectfix4.m`.
+### Kindle Whispersync Fix (`space.havrysh.expectfix`)
 
-## Package layout
+**Problem:** the Amazon Kindle app's "Sync to Furthest Page" fails silently
+("Retrieval failed, try again later") on iOS 6.
 
-```
-debs/space.havrysh.expectfix_1.0.0_iphoneos-arm.deb
-Packages / Packages.gz   (dpkg-scanpackages index)
-Release
-```
+**Cause:** old CFNetwork attaches an empty `Expect:` header to the Kindle
+app's sync POST request. Amazon's legacy logging endpoint tolerates it, but
+the real Whispersync endpoint (`cde-ta-g7g.amazon.com/FionaCDEServiceEngine/sidecar`)
+now rejects it outright with `417 Expectation Failed`, every single time.
+Traced with mitmproxy + tcpdump to confirm the exact header and response.
 
-## Hosting
+**Fix:** the tweak hooks `-[NSMutableURLRequest setValue:forHTTPHeaderField:]`,
+scoped only to the Kindle app (`com.amazon.Lassen`), and silently drops the
+header when Kindle tries to set it with an empty value. Everything else about
+the request is untouched.
 
-Cydia sources need to be served over plain HTTP(S) from a URL that has
-`Packages`/`Packages.gz` at its root. Any static file host works:
+Source: [`src/kindle-sync-fix/expectfix4.m`](src/kindle-sync-fix/expectfix4.m)
 
-- Push this whole folder to GitHub Pages / any static host, or
-- Serve it locally on the same Wi-Fi as the device:
-  `python3 -m http.server 8080` from this directory, then add
-  `http://<your-mac-ip>:8080/` as a source in Cydia.
-
-## Installing on device
-
-Cydia → Sources → Edit → Add → paste the repo URL → search "Kindle
-Whispersync Fix" → Install → respring (or just relaunch Kindle).
-
-## Rebuilding the .deb after editing expectfix4.m
+## Repo layout
 
 ```
-SDK=<path to an iOS SDK with an armv7 slice>
-clang -arch armv7 -mthumb -O2 -isysroot "$SDK" -miphoneos-version-min=6.0 \
-  -dynamiclib -framework Foundation -L. -lsubstrate \
-  expectfix4.m -o pkgroot/Library/MobileSubstrate/DynamicLibraries/expectfix4.dylib
-ldid -S pkgroot/Library/MobileSubstrate/DynamicLibraries/expectfix4.dylib
-
-dpkg-deb --build --root-owner-group pkgroot \
-  debs/space.havrysh.expectfix_1.0.0_iphoneos-arm.deb
-
-dpkg-scanpackages debs /dev/null > Packages
-gzip -k -f Packages
+Packages / Packages.gz   dpkg-scanpackages index (shared, all tweaks)
+Release                  repo metadata
+CydiaIcon.png            repo icon
+debs/                    built .deb packages (shared, all tweaks)
+src/<tweak-name>/        source + pkgroot for each tweak
 ```
+
+## Adding a new tweak
+
+1. `mkdir -p src/<name>/pkgroot/DEBIAN` and `pkgroot/Library/...` with the
+   install paths for whatever the tweak needs.
+2. Write `pkgroot/DEBIAN/control` (unique `Package:` id, human `Name:`, a
+   `Description:` that states the problem, the cause, and the fix in plain
+   English).
+3. Build:
+   ```
+   SDK=<path to an iOS SDK with an armv7 slice>
+   clang -arch armv7 -mthumb -O2 -isysroot "$SDK" -miphoneos-version-min=6.0 \
+     -dynamiclib -framework Foundation -L. -lsubstrate \
+     src/<name>/<source>.m -o src/<name>/pkgroot/Library/.../<name>.dylib
+   ldid -S src/<name>/pkgroot/Library/.../<name>.dylib
+
+   dpkg-deb --build --root-owner-group src/<name>/pkgroot \
+     debs/<package-id>_<version>_iphoneos-arm.deb
+   ```
+4. Regenerate the shared index from the repo root:
+   ```
+   dpkg-scanpackages debs /dev/null > Packages
+   gzip -k -f Packages
+   ```
+5. Commit and push — GitHub Pages serves the updated `Packages` automatically.
