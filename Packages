@@ -28,6 +28,3 @@ Description: SoundCloud deprecated its v1 API and the password OAuth grant this 
 Author: a-havrysh
 Name: SoundCloud iOS 6 Fix
 
-dpkg-scanpackages: warning: Packages in archive but missing from override file:
-dpkg-scanpackages: warning:   space.havrysh.expectfix space.havrysh.soundcloudfix
-dpkg-scanpackages: info: Wrote 2 entries to output Packages file.
