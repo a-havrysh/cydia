@@ -13,6 +13,21 @@ Description: Amazon's Whispersync backend (cde-ta-g7g.amazon.com) now rejects a 
 Author: a-havrysh
 Name: Kindle Whispersync Fix
 
+Package: space.havrysh.soundcloudfix
+Version: 1.0.0
+Architecture: iphoneos-arm
+Maintainer: a-havrysh
+Depends: mobilesubstrate
+Filename: debs/space.havrysh.soundcloudfix_1.0.0_iphoneos-arm.deb
+Size: 37252
+MD5sum: ae7ccdfed1f230a21a6159f9fcad35c6
+SHA1: 6c089239d123e5bd824e31354c85878d25e7ca78
+SHA256: dac40edda606a28544b819d6c4d09b6439ee6dd391608b8577bac6d7e695d00d
+Section: Tweaks
+Description: SoundCloud deprecated its v1 API and the password OAuth grant this old client relies on, breaking login, streaming, search, and likes/reposts on iOS 6. This tweak rewrites v1 API calls to the current v2 endpoints, fixes the resulting response/field mismatches, and adds a manual credential entry screen since automated login is no longer possible. Configuration for the endpoint rewrites lives in an external YAML file, editable without reinstalling.
+Author: a-havrysh
+Name: SoundCloud iOS 6 Fix
+
 dpkg-scanpackages: warning: Packages in archive but missing from override file:
-dpkg-scanpackages: warning:   space.havrysh.expectfix
-dpkg-scanpackages: info: Wrote 1 entries to output Packages file.
+dpkg-scanpackages: warning:   space.havrysh.expectfix space.havrysh.soundcloudfix
+dpkg-scanpackages: info: Wrote 2 entries to output Packages file.
