@@ -1,3 +1,5 @@
+<img src="CydiaIcon.png" width="96" height="96" alt="repo icon">
+
 # Legacy iOS Tweaks — Cydia repo
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
