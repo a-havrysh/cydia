@@ -12,15 +12,15 @@ here, only built `.deb`s and the package index.
 Cydia → Sources → Edit → Add:
 
 ```
-https://a-havrysh.github.io/cydia/
+https://kern0x1b.github.io/cydia/
 ```
 
 ## Published tweaks
 
 | Package | Source repo | Fixes |
 |---|---|---|
-| `space.havrysh.expectfix` — Kindle Whispersync Fix | [kindle-sync-fix](https://github.com/a-havrysh/kindle-sync-fix) | Amazon Kindle app sync failing with 417 Expectation Failed |
-| `space.havrysh.soundcloudfix` — SoundCloud iOS 6 Fix | [soundcloud-fix](https://github.com/a-havrysh/soundcloud-fix) (private) | SoundCloud 2.7.2 broken by the v1 API deprecation and dead password OAuth grant |
+| `space.kern0x1b.expectfix` — Kindle Whispersync Fix | [kindle-sync-fix](https://github.com/kern0x1b/kindle-sync-fix) | Amazon Kindle app sync failing with 417 Expectation Failed |
+| `space.kern0x1b.soundcloudfix` — SoundCloud iOS 6 Fix | [soundcloud-fix](https://github.com/kern0x1b/soundcloud-fix) (private) | SoundCloud 2.7.2 broken by the v1 API deprecation and dead password OAuth grant |
 
 ## Repo layout
 

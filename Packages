@@ -1,30 +1,30 @@
-Package: space.havrysh.expectfix
+Package: space.kern0x1b.expectfix
 Version: 1.0.0
 Architecture: iphoneos-arm
-Maintainer: a-havrysh
+Maintainer: kern0x1b
 Depends: mobilesubstrate
-Filename: debs/space.havrysh.expectfix_1.0.0_iphoneos-arm.deb
-Size: 3280
-MD5sum: c8664657a3f1109deb33c6bbd7986e9a
-SHA1: 0a9209534b862518060589cc7a62454d0bd66fee
-SHA256: 0069b1accec443b63477fc375e060d478d144f3135f5121eb1eb7e59c1dd68a2
+Filename: debs/space.kern0x1b.expectfix_1.0.0_iphoneos-arm.deb
+Size: 3276
+MD5sum: 6a8596a1d344c9345144caed7ba90c88
+SHA1: 199752bd473f78b2b925eec9d1a5e8313810ce14
+SHA256: f08b265aeb7070edfa02378d650d469c29ca22c37e25699a7080b806315f7db3
 Section: Tweaks
 Description: Amazon's Whispersync backend (cde-ta-g7g.amazon.com) now rejects a malformed empty "Expect" HTTP header that old CFNetwork attaches to Kindle app sync requests on iOS 6, returning "417 Expectation Failed" and breaking "Sync to Furthest Page". This tweak hooks -[NSMutableURLRequest setValue:forHTTPHeaderField:] inside the Kindle app only, and drops the header when its value is empty, restoring sync.
-Author: a-havrysh
+Author: kern0x1b
 Name: Kindle Whispersync Fix
 
-Package: space.havrysh.soundcloudfix
+Package: space.kern0x1b.soundcloudfix
 Version: 1.0.0
 Architecture: iphoneos-arm
-Maintainer: a-havrysh
+Maintainer: kern0x1b
 Depends: mobilesubstrate
-Filename: debs/space.havrysh.soundcloudfix_1.0.0_iphoneos-arm.deb
-Size: 37252
-MD5sum: ae7ccdfed1f230a21a6159f9fcad35c6
-SHA1: 6c089239d123e5bd824e31354c85878d25e7ca78
-SHA256: dac40edda606a28544b819d6c4d09b6439ee6dd391608b8577bac6d7e695d00d
+Filename: debs/space.kern0x1b.soundcloudfix_1.0.0_iphoneos-arm.deb
+Size: 37248
+MD5sum: d302dd8eca21926cb9faf23a3072d674
+SHA1: 84d4f29c57dff8fbcf5db142a2d505dfd021dbde
+SHA256: 0edad129053e149ac716299683c80ec6954aef0849ac2cfc63b5a87b9632af77
 Section: Tweaks
 Description: SoundCloud deprecated its v1 API and the password OAuth grant this old client relies on, breaking login, streaming, search, and likes/reposts on iOS 6. This tweak rewrites v1 API calls to the current v2 endpoints, fixes the resulting response/field mismatches, and adds a manual credential entry screen since automated login is no longer possible. Configuration for the endpoint rewrites lives in an external YAML file, editable without reinstalling.
-Author: a-havrysh
+Author: kern0x1b
 Name: SoundCloud iOS 6 Fix
 
